@@ -1,0 +1,82 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../assets/application.css">
+</head>
+
+<%= form_for :calculator, url: { action: :index }, method: :get do |f| %>
+    <h1 align="center">Калькулятор</h1>
+    <table class="calculator" align="center" cellspacing="5">
+      <tr>
+        <td align="center">Операнд 1</td>
+        <td align="center">Операнд 2</td>
+      </tr>
+
+      <tr>
+        <td><%= number_field_tag :a, params[:a], :step => 0.001 %></td>
+        <td><%= number_field_tag :b, params[:b], :step => 0.001 %></td>
+      </tr>
+    </table>  
+    <br>
+    <table class="calculator" align="center" cellspacing="5">
+      <tr>
+        <td align="center">Выберите операцию:</td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_sum"><%= radio_button_tag :operation, :sum, params[:operation]=='sum' %>+</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_subtr"><%= radio_button_tag :operation, :subtr, params[:operation]=='subtr' %>-</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_sqrt"><%= radio_button_tag :operation, :mult, params[:operation]=='mult' %>*</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_div"><%= radio_button_tag :operation, :div, params[:operation]=='div' %>/</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_sin"><%= radio_button_tag :operation, :sin, params[:operation]=='sin' %>sin</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_cos"><%= radio_button_tag :operation, :cos, params[:operation]=='cos' %>cos</label>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <table align="center">
+      <tr>
+        <td align="center"><%= f.submit 'Вычислить' %></td>
+        <td>
+          <form>
+            <input Type="button" Value="Сбросить" Onclick="window.location.href='/'">
+          </form>
+        </td>
+      </tr>
+    </table>
+
+    <% unless @result.nil? %>
+        <table class="calculator" align="center">
+          <tr>
+            <td align="center">Результат:</td>
+          </tr>
+          <tr>
+            <td align="center"><%= @result %></td>
+          </tr>
+        </table>
+    <% end %>
+<% end %>
