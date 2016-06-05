@@ -20,7 +20,7 @@
   end
 
   test "calculator sum" do
-    a = 242.32
+    a = 345
     b = 244
     operation = 'sum'
     get(:index, {:a => a, :b => b, :operation => operation})
@@ -41,6 +41,18 @@
     assert_equal(@request.params[:b], b.to_s, "Second operand")
     assert_equal(@request.params[:operation], operation, "Operation type")
     assert_equal(assigns(:result) , a.to_s + ' - ' + b.to_s + ' = ' + (a - b).to_s, "Subtr result")
+  end
+
+  test "calculator mult" do
+    a = 50
+    b = 35
+    operation = 'mult'
+    get(:index, {:a => a, :b => b, :operation => operation})
+    assert_response :success
+    assert_equal(@request.params[:a], a.to_s, "First operand")
+    assert_equal(@request.params[:b], b.to_s, "Second operand")
+    assert_equal(@request.params[:operation], operation, "Operation type")
+    assert_equal(assigns(:result) , a.to_s + ' * ' + b.to_s + ' = ' + (a * b).to_s, "Mult result")
   end
 
   test "calculator div infinity" do
