@@ -2,11 +2,6 @@
  
  class HomeControllerTest < ActionController::TestCase
   
-   test "should get index" do
-     get :index
-     assert_response :success
-   end
- 
   test "unknown calculator method" do
     a = 785
     b = 262
